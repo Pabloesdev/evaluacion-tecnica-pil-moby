@@ -84,7 +84,22 @@ public class EvaluacionTecnicaPil2 {
     }
 
     private static void resolverPunto4() {
-        // TODO: Realizar implementación.
+
+        System.out.println("  ==========  El candidato con mayor antiguedad es:  ==========  ");
+
+        Candidato candidatoMax = inicializarCandidatos().stream()
+                .max(Comparator.comparingInt(Candidato::getAniosExperiencia))
+                .get();
+
+        System.out.println(candidatoMax +
+                "\nEl candidato " + candidatoMax.getNombre() +
+                " "+ candidatoMax.getApellido() +" Domina las siguientes tecnologías: \n");
+
+        candidatoMax.ordenarTecnologias();
+
+
+
+
     }
 
     private static void resolverPunto5() {
