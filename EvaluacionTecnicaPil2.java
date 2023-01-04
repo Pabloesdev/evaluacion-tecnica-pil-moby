@@ -5,6 +5,7 @@ import main.java.com.pil.moby.evaluacion_tecnica.modelo.pojo.Candidato;
 import main.java.com.pil.moby.evaluacion_tecnica.modelo.pojo.Tecnologia;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class EvaluacionTecnicaPil2 {
@@ -55,6 +56,7 @@ public class EvaluacionTecnicaPil2 {
 
     }
 
+
     private static void resolverPunto1() {
 
         System.out.println(inicializarCandidatos());
@@ -62,11 +64,23 @@ public class EvaluacionTecnicaPil2 {
     }
 
     private static void resolverPunto2() {
-        // TODO: Realizar implementación.
+
+
+        inicializarCandidatos().stream()
+                .sorted(Comparator.comparingLong(Candidato::getId))
+                .map(c -> c.getNombre().concat(" ")
+                        .concat(c.getApellido()).concat(" ID: ")
+                        .concat(String.valueOf(c.getId())))
+                .forEach(System.out::println);
     }
 
     private static void resolverPunto3() {
-        // TODO: Realizar implementación.
+        inicializarCandidatos().stream()
+                .sorted(Comparator.comparingDouble(Candidato::getPretensionSalarial).reversed())
+                .map(c -> c.getNombre().concat(" ")
+                        .concat(c.getApellido()).concat(" ---> Pretensión Salarial: USD ")
+                        .concat(String.valueOf(c.getPretensionSalarial())))
+                .forEach(System.out::println);
     }
 
     private static void resolverPunto4() {
