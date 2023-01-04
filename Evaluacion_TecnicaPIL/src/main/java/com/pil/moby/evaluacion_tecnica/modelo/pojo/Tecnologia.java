@@ -2,13 +2,12 @@ package main.java.com.pil.moby.evaluacion_tecnica.modelo.pojo;
 
 import java.util.Objects;
 
-public class Tecnologia implements Comparable<Tecnologia>{
+public class Tecnologia{
 
     private Long id;
     private String nombre;
 
-    public Tecnologia() {
-    }
+
 
     public Tecnologia(Long id, String nombre) {
         this.id = id;
@@ -16,6 +15,7 @@ public class Tecnologia implements Comparable<Tecnologia>{
     }
 
     public Long getId() {
+
         return id;
     }
 
@@ -41,6 +41,7 @@ public class Tecnologia implements Comparable<Tecnologia>{
 
     @Override
     public int hashCode() {
+
         return Objects.hash(getId(), getNombre());
     }
 
@@ -51,15 +52,10 @@ public class Tecnologia implements Comparable<Tecnologia>{
                 " --> " + nombre;
     }
 
+    public boolean esIdPar() {
 
-
-    @Override
-    public int compareTo(Tecnologia otraT) {
-        if(this.nombre == null){
-            return 0;
-        }
-        return this.nombre.compareTo(otraT.getNombre());
-
+        return this.id % 2 == 0;
     }
 
 }
+

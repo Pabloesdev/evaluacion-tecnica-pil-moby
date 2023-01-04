@@ -52,7 +52,7 @@ public class EvaluacionTecnicaPil2 {
         imprimirMensajePunto(5);
 
         // Desarrollo de la consigna 3.
-        resolverPunto5();
+        resolverPunto5(inicializarCandidatos());
 
     }
 
@@ -97,16 +97,39 @@ public class EvaluacionTecnicaPil2 {
 
         candidatoMax.ordenarTecnologias();
 
+    }
 
+    private static void resolverPunto5(List<Candidato> candidatoList) {
 
+        // Identificamos al candidato, convirtiendo la List en Stream y aplicando método .max(Comparator);
+
+        Candidato candidatoMasTecnologias = inicializarCandidatos().stream()
+                .max(Comparator.comparing(c -> c.getTecnologias().size())).get();
+
+        // Imprimimos sus datos:
+
+        System.out.println("El candidato que mas cantidad de tecnologías maneja es: " +
+                candidatoMasTecnologias.getNombre().toUpperCase().concat(" ").concat(candidatoMasTecnologias.getApellido())
+                + "\nVeamos todos su datos: \n" +
+                candidatoMasTecnologias);
+        System.out.println("\nDe las tecnologías que maneja " + candidatoMasTecnologias.getNombre()
+        + " las siguientes tienen ID par: \n");
+
+        // Filtramos si existe tecnología con ID par, encontrar el primero e imprimirlo; Si no existe envía un mensaje alternativo;
+
+        candidatoMasTecnologias.getTecnologias().stream()
+                .filter(Tecnologia::esIdPar).findFirst().map(Tecnologia::getNombre)
+                .ifPresentOrElse((System.out::println), () -> System.out.println("No existe alguna tecnología con ID par en el candidato " +
+                        candidatoMasTecnologias.getNombre()));
 
     }
 
-    private static void resolverPunto5() {
-        // TODO: Realizar implementación.
-    }
+
 
     private static List<Candidato> inicializarCandidatos() {
+
+        // Inicializamos candidatos al mismo tiempo que agregamos a la lista;
+
         List<Candidato> candidatos = new ArrayList<>();
 
         Candidato candidato3 = new Candidato(3L, "John", "Doe", 5000.00, 2);

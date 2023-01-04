@@ -15,8 +15,6 @@ public class Candidato implements Comparable<Candidato> {
 
     private List<Tecnologia> tecnologias;
 
-    public Candidato() {
-    }
 
     public Candidato(Long id, String nombre, String apellido, Double pretensionSalarial, Integer aniosExperiencia) {
         this.id = id;
@@ -33,10 +31,12 @@ public class Candidato implements Comparable<Candidato> {
     }
 
     public void setTecnologias(List<Tecnologia> tecnologias) {
+
         this.tecnologias = tecnologias;
     }
 
     public Long getId() {
+
         return id;
     }
 
@@ -67,10 +67,12 @@ public class Candidato implements Comparable<Candidato> {
 
     public Integer getAniosExperiencia()
     {
+
         return aniosExperiencia;
     }
 
     public void setAniosExperiencia(Integer aniosExperiencia) {
+
         this.aniosExperiencia = aniosExperiencia;
     }
 
@@ -80,6 +82,7 @@ public class Candidato implements Comparable<Candidato> {
     }
 
     public void setPretensionSalarial(Double pretensionSalarial) {
+
         this.pretensionSalarial = pretensionSalarial;
     }
 
@@ -90,13 +93,12 @@ public class Candidato implements Comparable<Candidato> {
     }
 
 
-    public List<Tecnologia> ordenarTecnologias(){
+    public void ordenarTecnologias(){
+
 
         tecnologias.sort(Comparator.comparing(Tecnologia::getNombre));
         tecnologias.stream().map(Tecnologia::getNombre)
                 .forEach(System.out::println);
-
-        return tecnologias;
 
 
     }
@@ -139,7 +141,7 @@ public class Candidato implements Comparable<Candidato> {
         }
         return this.id.compareTo(otroCandidato.id);
 
-         }
+    }
 
 
 
